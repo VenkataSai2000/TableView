@@ -1,0 +1,44 @@
+//
+//  ViewController.swift
+//  TableView2
+//
+//  Created by Pulipati Venkata Sai on 30/09/22.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+    @IBOutlet var tableView:UITableView!
+    let contacts=["Venkat","sai","Harshini","Pranav","Pavan"]
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        tableView.delegate=self
+        tableView.dataSource=self
+        
+    }
+}
+    extension ViewController:UITableViewDelegate{
+        func tableView(_ tableView:UITableView, didSelectRowAt indexPath:IndexPath){
+            print("YOU TAPPED ME!!")
+        }
+        
+    }
+    extension ViewController:UITableViewDataSource{
+        func tableView(_ tableView:UITableView,numberOfRowsInSection section:Int)->Int{
+            return contacts.count
+        }
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell=tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            cell.textLabel?.text=contacts[indexPath.row]
+            return cell
+            
+        }
+    }
+    
+
+
+
+
+
